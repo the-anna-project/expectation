@@ -19,6 +19,11 @@ func DefaultConfig() Config {
 
 // New creates a new configured expectation object.
 func New(config Config) (Expectation, error) {
+	// Settings.
+	if config.Output == "" {
+		return nil, maskAnyf(invalidConfigError, "output must not be empty")
+	}
+
 	newExpectation := &expectation{
 		// Settings.
 		output: config.Output,
