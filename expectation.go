@@ -37,6 +37,14 @@ type expectation struct {
 	output string
 }
 
+func (e *expectation) Equals(expectation Expectation) bool {
+	if e.Output() != expectation.Output() {
+		return false
+	}
+
+	return true
+}
+
 func (e *expectation) Output() string {
 	return e.output
 }
